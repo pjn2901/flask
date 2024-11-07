@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Results - PDF</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .logo {
+            background-color: #1F3368;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Student information */
+        .student-info-container {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        .details-container {
+            font-size: 16px;
+        }
+
+        .image-container img {
+            max-width: 140px;
+            max-height: 140px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+        }
+
+        /* Result table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-color: #1F3368;
+        }
+
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1F3368;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        /* PASS/FAIL styles */
+        .pass {
+            color: green;
+            font-weight: bold;
+        }
+
+        .fail {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img height="104" src="http://127.0.0.1:5000/static/logo.jpg" alt="df">
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="student-info-container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 30%;">
+                                        <div class="image-container">
+                                            <p><img src="http://127.0.0.1:5000/student/{{ student.student_id }}/140x140" alt="Student Photo"></p>
+                                        </div>
+                                    </td>
+                                    <td style="width: 70%;">
+                                        <div class="details-container">
+                                            <p><strong>Name:</strong> {{ student.name }}</p>
+                                            <p><strong>Student ID:</strong> {{ student.student_id }}</p>
+                                            <p><strong>Branch:</strong> {{ student.branch }}</p>
+                                            <p>
+                                                <strong>PASS/FAIL:</strong>
+                                                <span class="{% if passorfail == 'PASS' %}pass{% else %}fail{% endif %}">{{ passorfail }}</span>
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h2 style="text-align: center;">Result</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subject Name</th>
+                            <th>Total Marks</th>
+                            <th>Obtained Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                        <tr>
+                            <td>{{ result.subject }}</td>
+                            <td>{{ result.total_marks }}</td>
+                            <td>{{ result.obtained_marks }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <style>
+        .logo {
+            background-color: #1F3368;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        form {
+            background-color: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin-bottom: 10px;
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #4CAF50;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        input[type="submit"]:hover {
+            color: #fff;
+            background-color: #3e8e41;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Added box shadow */
+        }
+
+        input[type="submit"]:focus {
+            outline: none;
+            /* Remove outline on focus */
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="logo" style="background-color: #1F3368; text-align: center;">
+        <img height="104" src="/static/logo.jpg" alt="df">
+    </div>
+    {% include 'navbar.html' %}
+    <br>
+    <br>
+    <br>
+    <form action="/loginn" method="post">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="Login" style="text-align: center;margin-left: 34%;">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .logo {
+            background-color: #1F3368;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .logo img {
+            height: 104px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .profile img {
+            width: 170px;
+            height: 170px;
+            /* Set width and height to ensure a square shape */
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile .details {
+            margin-left: 30px;
+            flex-grow: 1;
+        }
+
+        .profile h2 {
+            margin-top: 0;
+            color: #0056b3;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .profile p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .profile p strong {
+            display: inline-block;
+            width: 150px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile img {
+                margin-bottom: 20px;
+            }
+
+            .profile .details {
+                margin-left: 0;
+            }
+
+            .profile p strong {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="/static/logo.jpg" alt="Logo">
+    </div>
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <h1>Faculty Profile</h1>
+        <div class="profile">
+            <img src="http://127.0.0.1:5000/faculty/{{ faculty['faculty_id'] }}/170x170"
+                onerror="this.onerror=null;this.src='{{ url_for('static', filename='default_faculty.jpg') }}';">
+            <div class="details">
+                <h2>{{ faculty.name }}</h2>
+                <p><strong>Faculty ID:</strong> {{ faculty.faculty_id }}</p>
+                <p><strong>Subjects:</strong> {{ faculty.subjects }}</p>
+                <p><strong>Email:</strong> {{ faculty.username }}</p>
+                <p><strong>Department:</strong> {{ faculty.department }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
